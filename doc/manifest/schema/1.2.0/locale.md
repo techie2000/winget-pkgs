@@ -2,7 +2,7 @@
 [YAML]:                                             https://yaml.org/spec
 [semantic version]:                                 https://semver.org
 [Available languages for Windows]:                  https://docs.microsoft.com/windows-hardware/manufacture/desktop/available-language-packs-for-windows
-[Default Input Profiles Input Locales in Windows]:  https://docs.microsoft.com/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
+[locales]:                                          https://docs.microsoft.com/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
 [install]:                                          https://docs.microsoft.com/windows/package-manager/winget/install
 [list]:                                             https://docs.microsoft.com/windows/package-manager/winget/list
 [upgrade]:                                          https://docs.microsoft.com/windows/package-manager/winget/upgrade
@@ -19,28 +19,26 @@ PackageIdentifier:            # The package unique identifier
 PackageVersion:               # The package version
 PackageLocale:                # The package meta-data locale
 Publisher:                    # Optional publisher name
-PublisherURL:                 # Optional publisher home page
+PublisherUrl:                 # Optional publisher home page
 PublisherSupportUrl:          # Optional publisher support page
 PrivacyUrl:                   # Optional publisher privacy page
 Author:                       # Optional author
 PackageName:                  # Optional package name
 PackageUrl:                   # Optional package home page
 License:                      # Optional package license
-LicenseUrl:                   # Optional package home page
+LicenseUrl:                   # Optional package license page
 Copyright:                    # Optional package copyright
 CopyrightUrl:                 # Optional package copyright page
 ShortDescription:             # Optional short package description
 Description:                  # Optional full package description
-Moniker:                      # Optional most common package term
 Tags:                         # Optional list of package terms
-Agreement:                    # Optional package agreements
+Agreements:                   # Optional package agreements
   - AgreementLabel:           # Optional agreement label
     Agreement:                # Optional agreement text
     AgreementUrl:             # Optional agreement URL
-Documentation:                # Optional documentation
+Documentations:               # Optional documentation
   - DocumentLabel:            # Optional documentation label
     DocumentUrl:              # Optional documentation URL
-ReleaseDate:                  # Optional release date
 ReleaseNotes:                 # Optional release notes
 ReleaseNotesUrl:              # Optional release notes URL
 PurchaseUrl:                  # *Not implemented* Optional purchase URL
@@ -81,7 +79,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
   **References**
 
 * [Available languages for Windows]
-* [Default Input Profiles (Input Locales) in Windows]
+* [Default Input Profiles (Input Locales) in Windows][locales]
 
   >Note: This field is the key to determining which fields are required for the Microsoft community repository. The default locale specified in the version file must match with this value.
  </details>
@@ -93,7 +91,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
   This key represents the name of the publisher for a given package. This field is intended to allow the full publisher's or ISV's name to be displayed as they wish.
 
-  >Note: With the 1.0 release of the Windows Package Manager, this name affects how packages from a source are mapped to Apps installed in Windows 10 and Windows 11 via Add / Remove Programs (ARP). The best practice is to ensure this matches the ARP entry for the package when it has been installed. The impact is associated with `winget upgrade` and `winget list`.
+  >Note: With the 1.2 release of the Windows Package Manager, this name affects how packages from a source are mapped to Apps installed in Windows 10 and Windows 11 via Add / Remove Programs (ARP). The best practice is to ensure this matches the ARP entry for the package when it has been installed. The impact is associated with `winget upgrade` and `winget list`.
  </details>
 
 <details>
@@ -125,7 +123,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
   **Optional Field**
 
-  Thie key represents the author of a package. In some cases, the author is an individual who develops and or maintains the package.
+  This key represents the author of a package. In some cases, the author is an individual who develops and or maintains the package.
  </details>
 
 <details>
@@ -135,7 +133,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
   This key represents the name of the package. This field is intended to allow the full package name to be displayed as the publisher or ISV wishes.
 
-  >Note: With the 1.0 release of the Windows Package Manager, this name affects how packages from a source are mapped to Apps installed in Windows 10 via Add / Remove Programs (ARP). The best practice is to ensure this matches the ARP entry for the package name when it has been installed. The impact is associated with `winget upgrade` and `winget list`.
+  >Note: With the 1.2 release of the Windows Package Manager, this name affects how packages from a source are mapped to Apps installed in Windows 10 via Add / Remove Programs (ARP). The best practice is to ensure this matches the ARP entry for the package name when it has been installed. The impact is associated with `winget upgrade` and `winget list`.
  </details>
 
 <details>
@@ -160,7 +158,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
   **Optional Field**
 
   This key represents the license web site or specific web page provided the publisher or ISV. If there is a license web site or specific web page for the package, it is preferred over a generic license page for the publisher.
-  
+
   If this is a link to the license file for an open source project, it should be specific to the version for the package. Some open source projects change their license over time.
  </details>
 
@@ -178,7 +176,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
   **Optional Field**
 
   This key represents the copyright web site or specific web page provided the publisher or ISV. If there is a copyright web site or specific web page for the package, it is preferred over a generic copyright page for the publisher.
-  
+
   If this is a link to the copyright file for an open source project, it should be specific to the version for the package. Some open source projects change their copyright over time.
  </details>
 
@@ -203,27 +201,17 @@ ManifestVersion: 1.2.0        # The manifest syntax version
  </details>
 
 <details>
-  <summary><b>Moniker</b> - The most common package term</summary>
-
-  **Optional Field**
-
-  This key represents the most common term users would search for when installing or upgrading a package. If only one package uses this moniker, then the [install], [list] and [upgrade] command may match with this package. 
-  
-  >Note:Moniker is the third property evaluated when searching for a matching package.
- </details>
- 
-<details>
   <summary><b>Tags</b> - List of additional package search terms</summary>
 
   **Optional Field**
 
-  This key represents other common term users would search for when looking for packages. 
+  This key represents other common term users would search for when looking for packages.
 
   >Note: The best practice is to present these terms in all lower case with hyphens rather than spaces.
  </details>
- 
+
  <details>
-   <summary><b>Agreement</b> - List of package agreements</summary>
+   <summary><b>Agreements/b> - List of package agreements</summary>
 
    **Optional Field**
 
@@ -231,10 +219,10 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
    >Note: In the Windows Package Manager Community Repository, these are only allowed to be submitted by verified developers.
   </details>
-  
+
 <details>
   <summary><b>AgreementLabel</b> - The label for a package agreement</summary>
-    
+
   **Optional Field**
 
   This key represents the label for a package agreement.
@@ -242,7 +230,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>Agreement</b> - The text for a package agreement</summary>
-    
+
   **Optional Field**
 
   This key represents the text or body of a package agreement.
@@ -250,15 +238,15 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>AgreementUrl</b> - The URL for a package agreement</summary>
-  
+
   **Optional Field**
 
   This key represents the URL for a package agreement.
 </details>
 
 <details>
-  <summary><b>Documentation</b> - List of documentation</summary>
-  
+  <summary><b>Documentations</b> - List of documentation</summary>
+
   **Optional Field**
 
   This key holds any documentation for providing software guides such as manuals and troubleshooting URLs.
@@ -266,7 +254,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>DocumentLabel</b> - The documentation label</summary>
-  
+
   **Optional Field**
 
   This key represents the label for a documentation.
@@ -274,23 +262,15 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>DocumentUrl</b> - List of documentation</summary>
-  
+
   **Optional Field**
 
   This key represents the URL for a documentation.
 </details>
 
 <details>
-  <summary><b>ReleaseDate</b> - The Release Date for a package.</summary>
-  
-  **Optional Field**
-
-  This key represents the release date for a package.
-</details>
-
-<details>
   <summary><b>ReleaseNotes</b> - The Release Notes for a package.</summary>
-  
+
   **Optional Field**
 
   This key represents release notes for a package.
@@ -298,7 +278,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>ReleaseNotesUrl</b> - The Release Notes web page for a package.</summary>
-  
+
   **Optional Field**
 
   This key represents release notes web page for a package.
@@ -306,7 +286,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>PurchaseUrl</b> - The Purchase URL for a package.</summary>
-  
+
   **Optional Field**
 
   This key represents the purchase url for acquiring entitlement for a package.
@@ -314,7 +294,7 @@ ManifestVersion: 1.2.0        # The manifest syntax version
 
 <details>
   <summary><b>InstallationNotes</b> - The Installation Notes for a package.</summary>
-  
+
   **Optional Field**
 
   This key represents the notes displayed to the user upon completion of a package installation.
